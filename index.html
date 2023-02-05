@@ -28,11 +28,40 @@
                 /* font-size: 15vh; */
                 font-size: 100pt;
                 font-weight: initial;
+                margin-left: -5pt;
             }
             .content{
                 width: min(600px, 30%);
-                margin: 33vh 0 0 14vw;
+                margin: 33vh 0 0 10vw;
+                display: inline-flex;
             }
+
+            #sidebar{
+                /* min-width: 3.75vw; */
+                padding-top: 0.75vw;
+                border-right-width: 2px;
+                border-right-style: solid;
+                border-color: white;
+            }
+            .icon{
+                width: 3vw;
+                height: 3vw;
+                padding-right: 0.7vw;
+                border-right-width: 2px;
+                border-right-style: solid;
+                border-color: transparent;
+                background-repeat: no-repeat;
+                background-size: contain;
+                transition: 0.5s;
+            }
+            .icon:hover{
+                border-color: white;
+            }
+
+            #intro{
+                padding-left: 1.75vw;
+            }
+            
 
             @media screen and (max-width: 1000px) and (orientation: portrait){
                 body{
@@ -56,79 +85,87 @@
             //Background randomization
             document.body.style.backgroundImage = 'url(backgrounds/bg' + Math.floor(Math.random()*3 + 1) + '.jpg)';
         </script>
-        <div class="content">
-            <h1>hello.</h1>
+        <section class="content">
+            <aside id="sidebar">
+                <a href="https://github.com/pruutik/" title="Github"><div class="icon" style="background-image: url(icons/github.png);"></div></a>
+            </aside>
 
-            <p id="randtext">I too, dislike javascript.</p>    
-            <script>
-                //Typewriter messages
-                document.getElementById('randtext').innerHTML = '';
-                const motds = [
-                    'I don\'t know what to put here...',
-                    'Who am I?\nGood question.',
-                    'Welcome to my personal haven.',
-                    'Interactive Spotify suggestions.',
-                    'Resident nimrod.',
-                    ':D',
-                    'Homebrew your 2DS.',
-                    'Despite everything, it\'s still you.',
-                    'Resident bellend.',
-                    'Godspeed.',
-                    'This too shall pass.',
-                    'Your funny text is in another castle.',
-                    'o7',
-                    'Condolence..',
-                    '<3',
-                    'Terminally online.\nPerpetually stupid.',
-                    'americ\nanfootball',
-                    'I have no idea how to do backend programming.',
-                    'Anti debate debate club.',
-                    'You can\'t spell meme without me.',
-                    'T_T',
-                    'Ctrl+Z',
-                    'nice',
-                    'Shoutout to my parents.',
-                    'Undiagnosed muppet.',
-                    'Assigned homework at birth.',
-                    'wahoo',
-                    'Video James',
-                    'Existence enjoyers.',
-                    'The standardised unit of an imbecile.',
-                    'Love.',
-                    'Hats on a Miku.',
-                    'My Little Ghost.',
-                    '300 ft.'
-                ];
-                var index = localStorage.getItem('randindex');
-                if(index === null){index = Math.floor(Math.random()*motds.length);}
-                index = (parseInt(index) + 1) % motds.length
-                localStorage.setItem('randindex',index)
-                const chosentext = motds[index];
-                var delay = 20;
-                var output = '';
-                let i = 0;
-                function typewriterText(){
-                    setTimeout(function(){
-                        if(chosentext[i] === '\n'){
-                            output += '<br>'
-                            delay = 600;
-                        }else{
-                            output += chosentext[i]
-                            delay = 20;
-                        }
-                        document.getElementById('randtext').innerHTML = output;
-                        i++;
-                        if(i < chosentext.length){
-                            typewriterText();
-                        }
-                    }, delay)
-                }
-                document.onreadystatechange = () => {
-                    if(document.readyState === 'complete') {
-                        setTimeout(typewriterText,500)
+            <div id="intro">
+                <h1>hello.</h1>
+
+                <p id="randtext">I too, dislike javascript.</p>    
+                <script>
+                    //Typewriter messages
+                    document.getElementById('randtext').innerHTML = '';
+                    const motds = [
+                        'I don\'t know what to put here...',
+                        'Who am I?\nGood question.',
+                        'Welcome to my personal haven.',
+                        'Interactive Spotify suggestions.',
+                        'Resident nimrod.',
+                        ':D',
+                        'Homebrew your 2DS.',
+                        'Despite everything, it\'s still you.',
+                        'Resident bellend.',
+                        'Godspeed.',
+                        'This too shall pass.',
+                        'Your funny text is in another castle.',
+                        'o7',
+                        'Condolence..',
+                        '<3',
+                        'Terminally online.\nPerpetually stupid.',
+                        'americ\nanfootball',
+                        'I have no idea how to do backend programming.',
+                        'Anti debate debate club.',
+                        'You can\'t spell meme without me.',
+                        'T_T',
+                        'Ctrl+Z',
+                        'nice',
+                        'Shoutout to my parents.',
+                        'Undiagnosed muppet.',
+                        'Assigned homework at birth.',
+                        'wahoo',
+                        'Video James',
+                        'Existence enjoyers.',
+                        'The standardised unit of an imbecile.',
+                        'Love.',
+                        'Hats on a Miku.',
+                        'My Little Ghost.',
+                        '300 ft.'
+                    ];
+                    var index = localStorage.getItem('randindex');
+                    if(index === null){index = Math.floor(Math.random()*motds.length);}
+                    index = (parseInt(index) + 1) % motds.length
+                    localStorage.setItem('randindex',index)
+                    const chosentext = motds[index];
+                    var delay = 20;
+                    var output = '';
+                    let i = 0;
+                    function typewriterText(){
+                        setTimeout(function(){
+                            if(chosentext[i] === '\n'){
+                                output += '<br>'
+                                delay = 600;
+                            }else{
+                                output += chosentext[i]
+                                delay = 20;
+                            }
+                            document.getElementById('randtext').innerHTML = output;
+                            i++;
+                            if(i < chosentext.length){
+                                typewriterText();
+                            }
+                        }, delay)
                     }
-                };
-            </script>
+                    document.onreadystatechange = () => {
+                        if(document.readyState === 'complete') {
+                            setTimeout(typewriterText,500)
+                        }
+                    };
+                </script>
+
+                <br>
+            </div>
 
         </div>
     </body>
