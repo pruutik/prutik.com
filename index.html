@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Prutik's Funky Little Site</title>
+        <link rel="icon" type="image/png" href="favicon.png">
+        <meta property="og:site_name" content="Prutik">
+        <meta property="og:title" content="Prutik's Funky Little Site">
+        <meta property="og:description" content="Hello.">
+        <meta property="og:url" content="https://prutik.com">
+        <meta property="og:image" content="display.jpg">
+
+        <style>
+            body{
+                background-image: url(backgrounds/bg1.jpg);
+                background-size: cover;
+                background-attachment: fixed;
+                background-position: 12% 50%;
+                font-family: Helvetica, Arial, sans-serif;
+                color: white;
+            }
+            h1, p{
+                margin: 0;
+            }
+            p{
+                font-size: 24pt;
+            }
+            h1{
+                /* font-size: 15vh; */
+                font-size: 100pt;
+                font-weight: initial;
+                margin-left: -5pt;
+            }
+            .content{
+                width: min(600px, 30%);
+                margin: 33vh 0 0 11vw;
+                display: inline-flex;
+            }
+
+            #sidebar{
+                max-width: 3vw;
+                padding-right: 0.75vw;
+                padding-top: 0.75vw;
+                border-right-width: 2px;
+                border-right-style: solid;
+                border-color: white;
+            }
+            .icon{
+                width: 3vw;
+                height: 3vw;
+                background-size: contain;
+            }
+
+            #intro{
+                padding-left: 1.75vw;
+            }
+            
+
+            @media screen and (max-width: 1000px) and (orientation: portrait){
+                body{
+                    background-position: unset;
+                }
+                h1{
+                    font-size: clamp(100pt, 200pt, 30vw);
+                }
+                p{
+                    font-size: clamp(8vw, 36pt, 20vw);
+                }
+                .content{
+                width: min(600px, 80vw);
+                margin: 15vw 0 0 15vw;
+            }
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            //Background randomization
+            document.body.style.backgroundImage = 'url(backgrounds/bg' + Math.floor(Math.random()*3 + 1) + '.jpg)';
+        </script>
+        <section class="content">
+            <aside id="sidebar">
+                <a href="https://github.com/pruutik/"><div class="icon" style="background-image: url(icons/github.png);"></div></a>
+            </aside>
+
+            <div id="intro">
+                <h1>hello.</h1>
+
+                <p id="randtext">I too, dislike javascript.</p>    
+                <script>
+                    //Typewriter messages
+                    document.getElementById('randtext').innerHTML = '';
+                    const motds = [
+                        'I don\'t know what to put here...',
+                        'Who am I?\nGood question.',
+                        'Welcome to my personal haven.',
+                        'Interactive Spotify suggestions.',
+                        'Resident nimrod.',
+                        ':D',
+                        'Homebrew your 2DS.',
+                        'Despite everything, it\'s still you.',
+                        'Resident bellend.',
+                        'Godspeed.',
+                        'This too shall pass.',
+                        'Your funny text is in another castle.',
+                        'o7',
+                        'Condolence..',
+                        '<3',
+                        'Terminally online.\nPerpetually stupid.',
+                        'americ\nanfootball',
+                        'I have no idea how to do backend programming.',
+                        'Anti debate debate club.',
+                        'You can\'t spell meme without me.',
+                        'T_T',
+                        'Ctrl+Z',
+                        'nice',
+                        'Shoutout to my parents.',
+                        'Undiagnosed muppet.',
+                        'Assigned homework at birth.',
+                        'wahoo',
+                        'Video James',
+                        'Existence enjoyers.',
+                        'The standardised unit of an imbecile.',
+                        'Love.',
+                        'Hats on a Miku.',
+                        'My Little Ghost.',
+                        '300 ft.'
+                    ];
+                    var index = localStorage.getItem('randindex');
+                    if(index === null){index = Math.floor(Math.random()*motds.length);}
+                    index = (parseInt(index) + 1) % motds.length
+                    localStorage.setItem('randindex',index)
+                    const chosentext = motds[index];
+                    var delay = 20;
+                    var output = '';
+                    let i = 0;
+                    function typewriterText(){
+                        setTimeout(function(){
+                            if(chosentext[i] === '\n'){
+                                output += '<br>'
+                                delay = 600;
+                            }else{
+                                output += chosentext[i]
+                                delay = 20;
+                            }
+                            document.getElementById('randtext').innerHTML = output;
+                            i++;
+                            if(i < chosentext.length){
+                                typewriterText();
+                            }
+                        }, delay)
+                    }
+                    document.onreadystatechange = () => {
+                        if(document.readyState === 'complete') {
+                            setTimeout(typewriterText,500)
+                        }
+                    };
+                </script>
+            </div>
+
+        </div>
+    </body>
+</html>
